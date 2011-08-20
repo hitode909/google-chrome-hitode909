@@ -3,7 +3,19 @@
         return "http://www.st-hatena.com/users/" + name.slice(0, 2) + "/" + name + "/profile_s.gif";
     };
 
-    var filter = function() {
+    // http://remysharp.com/2010/07/21/throttling-function-calls/
+    function throttle(fn, delay) {
+        var timer = null;
+        return function () {
+            var context = this, args = arguments;
+            clearTimeout(timer);
+            timer = setTimeout(function () {
+                fn.apply(context, args);
+            }, delay);
+        };
+    }
+
+    var filter = throttle(function() {
         Array.prototype.slice.call(document.querySelectorAll("span.hatena-star-star-container a")).forEach(function(star) {
             try {
                 if (star.className.match(/user-icon/)) return;
@@ -41,7 +53,11 @@
                 container.appendChild(img);
             } catch(e) { };
         });
-    };
+    }, 100);
+
+    document.body.addEventListener('DOMNodeInserted',function(ev){
+        filter();
+    }, false);
 
     document.body.addEventListener('mouseup',function(ev){
         filter();
