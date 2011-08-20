@@ -20,7 +20,8 @@
       "all_frames": false,
       "js": [
         "expand-image-link.js",
-        "hatena-star-user-icon.js"
+        "hatena-star-user-icon.js",
+        "UseGoogleWebHistory.user.js"
       ],
       "matches": [
         "http://*/*",
