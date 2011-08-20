@@ -1,0 +1,31 @@
+{
+    "name": "hitode909",
+    "version": "1.0",
+    "description": "便利なパッケージです",
+    "permissions" : [
+        "contextMenus",
+        "tabs",
+        "cookies",
+        "http://*/*",
+        "https://*/*"
+    ],
+    "icons": {
+        "16": "icon16.png",
+        "48": "icon48.png",
+        "128": "icon128.png"
+    },
+    "content_scripts": [
+    {
+      "run_at": "document_end",
+      "all_frames": false,
+      "js": [
+        "expand-image-link.js",
+        "hatena-star-user-icon.js"
+      ],
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ]
+    }
+    ]
+}
