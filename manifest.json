@@ -6,6 +6,7 @@
         "contextMenus",
         "tabs",
         "cookies",
+        "notifications",
         "http://*/*",
         "https://*/*"
     ],
@@ -21,12 +22,15 @@
       "js": [
         "expand-image-link.js",
         "hatena-star-user-icon.js",
-        "UseGoogleWebHistory.user.js"
+        "UseGoogleWebHistory.user.js",
+        "event-observer.js",
+        "LDR-open-in-background-tab.js"
       ],
       "matches": [
         "http://*/*",
         "https://*/*"
       ]
     }
-    ]
+    ],
+    "background_page": "background.html"
 }
