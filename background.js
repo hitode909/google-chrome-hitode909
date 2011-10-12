@@ -1,6 +1,8 @@
 (function() {
     var counts = {};
     var today = null;
+    var notification;
+    var timer;
 
     // today's key
     function getToday() {
@@ -14,15 +16,23 @@
         if (!counts[event]) {
             counts[event] = 0;
         }
-        var notification = webkitNotifications.createNotification(
+        if (notification) {
+            notification.cancel();
+        }
+        if (timer) {
+            clearTimeout(timer);
+        }
+        notification = webkitNotifications.createNotification(
             'icon48.png',
             "今日の" + event,
             ++counts[event] + "回"
         );
         notification.show();
 
-        setTimeout(function() {
+        timer = setTimeout(function() {
             notification.cancel();
+            notification = null;
+            timer = null;
         }, 2000);
     }
 
