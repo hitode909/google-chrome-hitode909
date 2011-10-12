@@ -1,5 +1,4 @@
 (function() {
-    var counts = {};
     var today = null;
     var notification;
     var timer;
@@ -8,13 +7,13 @@
     function getToday() {
         return Math.floor(Date.now() / (60*60*24*1000));
     }
-    function resetCounts() {
-        counts = {};
+    function resetStorage() {
+        localStorage.clear();
     }
 
     function showNotification(event) {
-        if (!counts[event]) {
-            counts[event] = 0;
+        if (!localStorage[event]) {
+            localStorage[event] = 0;
         }
         if (notification) {
             notification.cancel();
@@ -25,7 +24,7 @@
         notification = webkitNotifications.createNotification(
             'icon48.png',
             "今日の" + event,
-            ++counts[event] + "回"
+            ++localStorage[event] + "回"
         );
         notification.show();
 
@@ -40,7 +39,7 @@
         function(request, sender, sendResponse) {
             if (today != getToday()) {
                 today = getToday();
-                resetCounts();
+                resetStorage();
             }
             try {
                 if (request.event) {
