@@ -5,7 +5,7 @@
 
     // today's key
     function getToday() {
-        return Math.floor(Date.now() / (60*60*24*1000));
+        return new Date().getDay();
     }
     function resetStorage() {
         localStorage.clear();
