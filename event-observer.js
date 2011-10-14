@@ -4,6 +4,6 @@
         });
     }, false);
 
-    chrome.extension.sendRequest({event: "pageload"}, function(response) {
+    chrome.extension.sendRequest({event: "pageload", url: location.href}, function(response) {
     });
 })();

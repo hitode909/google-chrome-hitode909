@@ -1,5 +1,5 @@
 (function() {
-    var today = null;
+    var today = getToday();
     var notification;
     var timer;
 
@@ -11,7 +11,7 @@
         localStorage.clear();
     }
 
-    function showNotification(event) {
+    function showNotification(event, url) {
         if (!localStorage[event]) {
             localStorage[event] = 0;
         }
@@ -21,10 +21,18 @@
         if (timer) {
             clearTimeout(timer);
         }
+        var title = "今日の" + event;
+        var message = ++localStorage[event] + "回";
+        if (event == "pageload") {
+            if (!localStorage[url]) {
+                localStorage[url] = 0;
+            }
+            message += ", このページ: " + (++localStorage[url]) + "回";
+        }
         notification = webkitNotifications.createNotification(
             'icon48.png',
-            "今日の" + event,
-            ++localStorage[event] + "回"
+            title,
+            message
         );
         notification.show();
 
@@ -43,7 +51,7 @@
             }
             try {
                 if (request.event) {
-                    showNotification(request.event);
+                    showNotification(request.event, request.url);
                 } else {
                     throw "event is required";
                 }
