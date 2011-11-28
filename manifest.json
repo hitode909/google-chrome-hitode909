@@ -23,14 +23,25 @@
         "expand-image-link.js",
         "hatena-star-user-icon.js",
         "UseGoogleWebHistory.user.js",
-        "event-observer.js",
-        "LDR-open-in-background-tab.js"
+        "event-observer.js"
       ],
       "matches": [
         "http://*/*",
         "https://*/*"
       ]
+    },
+    {
+      "run_at": "document_end",
+      "all_frames": false,
+      "js": [
+        "LDR-open-in-background-tab.js",
+        "LDR-hatena-star.js"
+      ],
+      "matches": [
+        "http://reader.livedoor.com/reader/"
+      ]
     }
+
     ],
     "background_page": "background.html"
 }
