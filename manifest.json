@@ -40,6 +40,16 @@
       "matches": [
         "http://reader.livedoor.com/reader/"
       ]
+    },
+    {
+      "run_at": "document_end",
+      "all_frames": false,
+      "js": [
+        "youtube-auto-next.js"
+      ],
+      "matches": [
+        "http://www.youtube.com/watch*"
+      ]
     }
 
     ],
