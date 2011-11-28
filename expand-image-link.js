@@ -2,6 +2,8 @@
     var meta = document.querySelector('meta[name="expand-image"]');
     if (meta && meta.content == 'no') return;
 
+    if (location.host == "soundcloud.com") return; // XXX: heuristic
+
     // http://remysharp.com/2010/07/21/throttling-function-calls/
     function throttle(fn, delay) {
         var timer = null;
