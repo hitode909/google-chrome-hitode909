@@ -11,6 +11,21 @@
         localStorage.clear();
     }
 
+    function showBadge(event, url) {
+        if (event != 'pageload') {
+            return;
+        }
+        if (!localStorage[event]) {
+            localStorage[event] = 0;
+        }
+
+        var label = String(++localStorage[event]);
+        chrome.browserAction.setBadgeText({
+            text: label
+        });
+
+    };
+
     function showNotification(event, url) {
         if (!localStorage[event]) {
             localStorage[event] = 0;
@@ -51,7 +66,8 @@
             }
             try {
                 if (request.event) {
-                    showNotification(request.event, request.url);
+                    showBadge(request.event);
+                    // showNotification(request.event, request.url);
                 } else {
                     throw "event is required";
                 }
@@ -60,4 +76,7 @@
             }
             sendResponse({});
         });
+
+    chrome.browserAction.setBadgeBackgroundColor({color: [193, 53, 0, 255]});
+
 })();
