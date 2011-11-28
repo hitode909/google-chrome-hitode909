@@ -30,11 +30,19 @@ execute(function(){
 
     function init(){
         window.Hatena.Star.EntryLoader.headerTagAndClassName = ['h2', 'item_title'];
-        window.register_hook('after_printfeed', function(feed) {
-            new window.Hatena.Star.EntryLoader();
-        });
         window.Keybind.add('S', function(){
             addStar();
+        });
+
+        var loaderTimer = null;
+        window.register_hook('after_printfeed', function(feed) {
+            if (loaderTimer) {
+                clearTimeout(loaderTimer);
+            }
+            loaderTimer = setTimeout(function() {
+                new window.Hatena.Star.EntryLoader();
+                loaderTimer = null;
+            }, 500);
         });
     }
 
