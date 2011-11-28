@@ -1,6 +1,6 @@
 {
     "name": "hitode909",
-    "version": "1.4",
+    "version": "1.5",
     "description": "便利なパッケージです",
     "permissions" : [
         "contextMenus",
